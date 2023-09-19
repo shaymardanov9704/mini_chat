@@ -17,11 +17,19 @@ dependencies:
   google_sign_in: ^6.1.5
   keyboard_dismisser:
   image_picker: ^1.0.4
+  emoji_picker_flutter:
+  flutter_notification_channel:
+  gallery_saver:
   #firebase
   firebase_core: ^2.14.0
   firebase_auth: ^4.7.0
   cloud_firestore: ^4.9.1
   firebase_storage: ^11.2.6
+  firebase_messaging:
+  http:
+  firebase_database: ^10.2.5
+  cached_network_image:
+
 
 
 dev_dependencies:
@@ -34,5 +42,5 @@ flutter:
 
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - images/

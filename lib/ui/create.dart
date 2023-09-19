@@ -28,7 +28,7 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
       appBar: AppBar(title: const Text("Create Page")),
       body: StreamBuilder(
-        stream: firebaseDB.collections.snapshots(),
+        stream: firebaseDB.users.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
           if (streamSnapshot.hasData) {
             return ListView.builder(
@@ -39,8 +39,8 @@ class _CreatePageState extends State<CreatePage> {
                 return Card(
                   margin: const EdgeInsets.all(10),
                   child: ListTile(
-                    title: Text(documentSnapshot['name']),
-                    subtitle: Text(documentSnapshot['price'].toString()),
+                    title: Text(documentSnapshot['username']),
+                    subtitle: Text(documentSnapshot['user_id'].toString()),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
@@ -48,10 +48,10 @@ class _CreatePageState extends State<CreatePage> {
                           IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {
-                              firebaseDB.update(
-                                productId: documentSnapshot.id,
-                                map: {"name": "Update", "price": 0},
-                              );
+                              // firebaseDB.update(
+                              //   productId: documentSnapshot.id,
+                              //   map: {"name": "Update", "price": 0},
+                              // );
                             },
                           ),
                           IconButton(
@@ -74,74 +74,74 @@ class _CreatePageState extends State<CreatePage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.width * 1.65,
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                        hintText: "Name",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: priceController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: "Price",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    GestureDetector(
-                      onTap: () async {
-                        try {
-                          await firebaseDB.create(
-                            name: nameController.text,
-                            id: int.parse(priceController.text),
-                            correct: true,
-                          );
-                        } catch (e) {
-                          if (kDebugMode) {
-                            print(e);
-                          }
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: nameController.text == "" &&
-                                  priceController.text == ""
-                              ? Colors.grey
-                              : Colors.blue,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: const Center(
-                          child: Text("Add product"),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          );
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     await showModalBottomSheet(
+      //       context: context,
+      //       builder: (BuildContext context) {
+      //         return Container(
+      //           width: double.infinity,
+      //           height: MediaQuery.of(context).size.width * 1.65,
+      //           padding: const EdgeInsets.all(16),
+      //           child: Column(
+      //             children: [
+      //               TextFormField(
+      //                 controller: nameController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "Name",
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(16),
+      //                   ),
+      //                 ),
+      //               ),
+      //               const SizedBox(height: 16),
+      //               TextFormField(
+      //                 controller: priceController,
+      //                 keyboardType: TextInputType.number,
+      //                 decoration: InputDecoration(
+      //                   hintText: "Price",
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(16),
+      //                   ),
+      //                 ),
+      //               ),
+      //               const SizedBox(height: 24),
+      //               GestureDetector(
+      //                 onTap: () async {
+      //                   try {
+      //                     await firebaseDB.create(
+      //                       username: nameController.text,
+      //                       id: int.parse(priceController.text),
+      //                       correct: true,
+      //                     );
+      //                   } catch (e) {
+      //                     if (kDebugMode) {
+      //                       print(e);
+      //                     }
+      //                   }
+      //                 },
+      //                 child: Container(
+      //                   padding: const EdgeInsets.all(16),
+      //                   width: double.infinity,
+      //                   decoration: BoxDecoration(
+      //                     color: nameController.text == "" &&
+      //                             priceController.text == ""
+      //                         ? Colors.grey
+      //                         : Colors.blue,
+      //                     borderRadius: BorderRadius.circular(16),
+      //                   ),
+      //                   child: const Center(
+      //                     child: Text("Add product"),
+      //                   ),
+      //                 ),
+      //               )
+      //             ],
+      //           ),
+      //         );
+      //       },
+      //     );
+      //   },
+      // ),
     );
   }
 }
