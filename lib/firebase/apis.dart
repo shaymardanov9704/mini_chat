@@ -55,7 +55,9 @@ class APIs {
 
   // for sending push notification
   static Future<void> sendPushNotification(
-      ChatUser chatUser, String msg) async {
+    ChatUser chatUser,
+    String msg,
+  ) async {
     try {
       final body = {
         "to": chatUser.pushToken,
@@ -86,6 +88,17 @@ class APIs {
   // for checking if user exists or not?
   static Future<bool> userExists() async {
     return (await firestore.collection('users').doc(user.uid).get()).exists;
+  }
+
+  static Future<List<ChatUser>> fetchUsers() async {
+    List<ChatUser> userList = [];
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+        await firestore.collection("users").get();
+    for (var doc in snapshot.docs) {
+      userList.add(ChatUser.fromJson(doc.data()));
+    }
+    print(userList.length);
+    return userList;
   }
 
   // for adding an chat user for our conversation
@@ -138,15 +151,16 @@ class APIs {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
     final chatUser = ChatUser(
-        id: user.uid,
-        name: user.displayName.toString(),
-        email: user.email.toString(),
-        about: "Hey, I'm using We Chat!",
-        image: user.photoURL.toString(),
-        createdAt: time,
-        isOnline: false,
-        lastActive: time,
-        pushToken: '');
+      id: user.uid,
+      name: user.displayName.toString(),
+      email: user.email.toString(),
+      about: "Hey, I'm using We Chat!",
+      image: user.photoURL.toString(),
+      createdAt: time,
+      isOnline: false,
+      lastActive: time,
+      pushToken: '',
+    );
 
     return await firestore
         .collection('users')
@@ -180,7 +194,10 @@ class APIs {
 
   // for adding an user to my user when first message is send
   static Future<void> sendFirstMessage(
-      ChatUser chatUser, String msg, Type type) async {
+    ChatUser chatUser,
+    String msg,
+    Type type,
+  ) async {
     await firestore
         .collection('users')
         .doc(chatUser.id)
