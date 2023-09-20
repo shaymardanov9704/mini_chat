@@ -276,7 +276,10 @@ class APIs {
 
   // for sending message
   static Future<void> sendMessage(
-      ChatUser chatUser, String msg, Type type) async {
+    ChatUser chatUser,
+    String msg,
+    Type type,
+  ) async {
     //message sending time (also used as id)
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 

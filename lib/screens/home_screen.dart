@@ -23,9 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // for storing all users
   List<ChatUser> _list = [];
   List<ChatUser> _allUsersList = [];
-  PageController pageController = PageController(
-    initialPage: 0
-  );
+  PageController pageController = PageController(initialPage: 0);
 
   // for storing searched items
   final List<ChatUser> _searchList = [];
@@ -81,20 +79,17 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
         child: Scaffold(
-          //app bar
           appBar: AppBar(
-            leading: const Icon(CupertinoIcons.home),
             title: _isSearching
                 ? TextField(
                     decoration: const InputDecoration(
-                        border: InputBorder.none, hintText: 'Name, Email, ...'),
+                      border: InputBorder.none,
+                      hintText: 'Name, Email, ...',
+                    ),
                     autofocus: true,
                     style: const TextStyle(fontSize: 17, letterSpacing: 0.5),
-                    //when search text changes then updated search list
                     onChanged: (val) {
-                      //search logic
                       _searchList.clear();
-
                       for (var i in _list) {
                         if (i.name.toLowerCase().contains(val.toLowerCase()) ||
                             i.email.toLowerCase().contains(val.toLowerCase())) {
@@ -108,59 +103,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 : const Text('We Chat'),
             actions: [
-              //search user button
               IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _isSearching = !_isSearching;
-                    });
-                  },
-                  icon: Icon(_isSearching
+                onPressed: () {
+                  setState(() {
+                    _isSearching = !_isSearching;
+                  });
+                },
+                icon: Icon(
+                  _isSearching
                       ? CupertinoIcons.clear_circled_solid
-                      : Icons.search)),
-
-              //more features button
+                      : Icons.search,
+                ),
+              ),
               IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => ProfileScreen(user: APIs.me)));
-                  },
-                  icon: const Icon(Icons.more_vert))
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ProfileScreen(user: APIs.me),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.more_vert),
+              )
             ],
           ),
-
-          //floating button to add new user
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                FloatingActionButton(
-                  onPressed: () {
-                    setState(() {
-                      APIs.fetchUsers();
-                    });
-                  },
-                  child: const Icon(Icons.add_comment_rounded),
-                ),
-                const SizedBox(width: 12),
-                FloatingActionButton(
-                  onPressed: () {
-                    setState(() {
-                      _addChatUserDialog();
-                    });
-                  },
-                  child: const Icon(Icons.add_comment_rounded),
-                ),
-              ],
-            ),
-          ),
-
-          //body
           body: PageView(
-
             controller: pageController,
             children: [
               ListView.builder(
@@ -232,11 +200,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 },
               ),
-              const Center(child: Text("More"),),
+              const Center(
+                child: Text("More"),
+              ),
             ],
           ),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      APIs.fetchUsers();
+                    });
+                  },
+                  child: const Icon(Icons.add_comment_rounded),
+                ),
+                const SizedBox(width: 12),
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      _addChatUserDialog();
+                    });
+                  },
+                  child: const Icon(Icons.add_comment_rounded),
+                ),
+              ],
+            ),
+          ),
           bottomNavigationBar: BottomNavigationBar(
-            currentIndex: 0,//pageController.page!.toInt(),
+            currentIndex: 0, //pageController.page!.toInt(),
             onTap: (i) {
               setState(() {
                 pageController.jumpToPage(i);
@@ -245,7 +240,8 @@ class _HomeScreenState extends State<HomeScreen> {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.people), label: "Users"),
               BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
-              BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.more_horiz), label: "More"),
             ],
           ),
         ),
