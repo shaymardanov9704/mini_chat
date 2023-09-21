@@ -304,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (email.isNotEmpty) {
                         await APIs.addChatUser(email).then((value) {
                           if (!value) {
-                            Dialogs.showSnackbar(
+                            Dialogs.showSnackBar(
                                 context, 'User does not Exists!');
                           }
                         });

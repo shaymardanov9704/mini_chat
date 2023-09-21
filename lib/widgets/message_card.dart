@@ -199,7 +199,7 @@ class _MessageCardState extends State<MessageCard> {
                       //for hiding bottom sheet
                       Navigator.pop(context);
 
-                      Dialogs.showSnackbar(context, 'Text Copied!');
+                      Dialogs.showSnackBar(context, 'Text Copied!');
                     });
                   })
                   :
@@ -217,7 +217,7 @@ class _MessageCardState extends State<MessageCard> {
                         //for hiding bottom sheet
                         Navigator.pop(context);
                         if (success != null && success) {
-                          Dialogs.showSnackbar(
+                          Dialogs.showSnackBar(
                               context, 'Image Successfully Saved!');
                         }
                       });
