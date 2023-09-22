@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mini_chat/firebase/apis.dart';
+import 'package:mini_chat/core/firebase/apis.dart';
 import 'package:mini_chat/screens/auth/auth.dart';
 
 import '../../main.dart';

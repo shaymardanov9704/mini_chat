@@ -6,7 +6,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mini_chat/firebase/apis.dart';
+import 'package:mini_chat/core/firebase/apis.dart';
 import 'package:mini_chat/models/chat_user_model.dart';
 import 'package:mini_chat/models/message_model.dart';
 

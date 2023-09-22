@@ -11,13 +11,8 @@ import 'package:mini_chat/models/chat_user_model.dart';
 import 'package:mini_chat/models/message_model.dart';
 
 class APIs {
-  // for authentication
   static FirebaseAuth auth = FirebaseAuth.instance;
-
-  // for accessing cloud firestore database
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  // for accessing firebase storage
   static FirebaseStorage storage = FirebaseStorage.instance;
 
   // for storing self information
@@ -85,7 +80,6 @@ class APIs {
     }
   }
 
-  // for checking if user exists or not?
   static Future<bool> userExists() async {
     return (await firestore.collection('users').doc(user.uid).get()).exists;
   }
@@ -146,7 +140,6 @@ class APIs {
     });
   }
 
-  // for creating a new user
   static Future<void> createUser() async {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -168,7 +161,6 @@ class APIs {
         .set(chatUser.toJson());
   }
 
-  // for getting id's of known users from firestore database
   static Stream<QuerySnapshot<Map<String, dynamic>>> getMyUsersId() {
     return firestore
         .collection('users')
@@ -177,7 +169,6 @@ class APIs {
         .snapshots();
   }
 
-  // for getting all users from firestore database
   static Stream<QuerySnapshot<Map<String, dynamic>>> getAllUsers(
       List<String> userIds) {
     log('\nUserIds: $userIds');
@@ -194,10 +185,7 @@ class APIs {
 
   // for adding an user to my user when first message is send
   static Future<void> sendFirstMessage(
-    ChatUser chatUser,
-    String msg,
-    Type type,
-  ) async {
+      ChatUser chatUser, String msg, Type type) async {
     await firestore
         .collection('users')
         .doc(chatUser.id)

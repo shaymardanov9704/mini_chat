@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mini_chat/firebase/apis.dart';
+import 'package:mini_chat/core/firebase/apis.dart';
 import 'package:mini_chat/models/chat_user_model.dart';
 import 'package:mini_chat/screens/auth/auth.dart';
 

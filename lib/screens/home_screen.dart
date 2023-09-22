@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mini_chat/firebase/apis.dart';
+import 'package:mini_chat/core/firebase/apis.dart';
 import 'package:mini_chat/models/chat_user_model.dart';
 
 import '../helper/dialogs.dart';

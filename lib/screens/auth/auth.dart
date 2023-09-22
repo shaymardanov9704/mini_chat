@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mini_chat/firebase/apis.dart';
+import 'package:mini_chat/core/firebase/apis.dart';
 import 'package:mini_chat/helper/dialogs.dart';
 import 'package:mini_chat/main.dart';
 import 'package:mini_chat/screens/home_screen.dart';
