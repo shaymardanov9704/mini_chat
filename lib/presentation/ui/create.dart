@@ -12,7 +12,6 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  final firebaseDB = FirestoreService();
   final nameController = TextEditingController();
   final priceController = TextEditingController();
 
@@ -27,121 +26,38 @@ class _CreatePageState extends State<CreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Create Page")),
-      body: StreamBuilder(
-        stream: firebaseDB.users.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-              itemCount: streamSnapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
-                return Card(
-                  margin: const EdgeInsets.all(10),
-                  child: ListTile(
-                    title: Text(documentSnapshot['username']),
-                    subtitle: Text(documentSnapshot['user_id'].toString()),
-                    trailing: SizedBox(
-                      width: 100,
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              // firebaseDB.update(
-                              //   productId: documentSnapshot.id,
-                              //   map: {"name": "Update", "price": 0},
-                              // );
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              firebaseDB.delete(productId: documentSnapshot.id);
-                            },
-                          ),
-                        ],
-                      ),
+      body: ListView.builder(
+        itemCount: 12,
+        itemBuilder: (context, index) {
+          return Card(
+            margin: const EdgeInsets.all(10),
+            child: ListTile(
+              title: Text('username'),
+              subtitle: Text('user_id'),
+              trailing: SizedBox(
+                width: 100,
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        // firebaseDB.update(
+                        //   productId: documentSnapshot.id,
+                        //   map: {"name": "Update", "price": 0},
+                        // );
+                      },
                     ),
-                  ),
-                );
-              },
-            );
-          }
-
-          return const Center(
-            child: CupertinoActivityIndicator(),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
           );
         },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () async {
-      //     await showModalBottomSheet(
-      //       context: context,
-      //       builder: (BuildContext context) {
-      //         return Container(
-      //           width: double.infinity,
-      //           height: MediaQuery.of(context).size.width * 1.65,
-      //           padding: const EdgeInsets.all(16),
-      //           child: Column(
-      //             children: [
-      //               TextFormField(
-      //                 controller: nameController,
-      //                 decoration: InputDecoration(
-      //                   hintText: "Name",
-      //                   border: OutlineInputBorder(
-      //                     borderRadius: BorderRadius.circular(16),
-      //                   ),
-      //                 ),
-      //               ),
-      //               const SizedBox(height: 16),
-      //               TextFormField(
-      //                 controller: priceController,
-      //                 keyboardType: TextInputType.number,
-      //                 decoration: InputDecoration(
-      //                   hintText: "Price",
-      //                   border: OutlineInputBorder(
-      //                     borderRadius: BorderRadius.circular(16),
-      //                   ),
-      //                 ),
-      //               ),
-      //               const SizedBox(height: 24),
-      //               GestureDetector(
-      //                 onTap: () async {
-      //                   try {
-      //                     await firebaseDB.create(
-      //                       username: nameController.text,
-      //                       id: int.parse(priceController.text),
-      //                       correct: true,
-      //                     );
-      //                   } catch (e) {
-      //                     if (kDebugMode) {
-      //                       print(e);
-      //                     }
-      //                   }
-      //                 },
-      //                 child: Container(
-      //                   padding: const EdgeInsets.all(16),
-      //                   width: double.infinity,
-      //                   decoration: BoxDecoration(
-      //                     color: nameController.text == "" &&
-      //                             priceController.text == ""
-      //                         ? Colors.grey
-      //                         : Colors.blue,
-      //                     borderRadius: BorderRadius.circular(16),
-      //                   ),
-      //                   child: const Center(
-      //                     child: Text("Add product"),
-      //                   ),
-      //                 ),
-      //               )
-      //             ],
-      //           ),
-      //         );
-      //       },
-      //     );
-      //   },
-      // ),
     );
   }
 }

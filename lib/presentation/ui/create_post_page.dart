@@ -1,9 +1,7 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mini_chat/firebase/storage_service.dart';
 
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({Key? key}) : super(key: key);
@@ -26,7 +24,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
   }
 
   Future<void> pickImage({required ImageSource source}) async {
-    final firebaseStorage = StorageService();
     final XFile? image = await _picker.pickImage(
       source: source,
     );
@@ -35,7 +32,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
     });
     try {
       final uint8 = await image!.readAsBytes();
-      await firebaseStorage.uploadFile(uint8, image!.name);
     } catch (e) {
       print(e);
     }
