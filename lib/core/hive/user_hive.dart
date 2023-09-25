@@ -1,5 +1,5 @@
 import 'package:mini_chat/core/hive/hive_base.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
 
 class UserHive {
   final HiveBase _base;

@@ -226,7 +226,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? status = null,
-    Object? user = null,
+    Object? user = freezed,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
@@ -234,7 +234,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as ChatUser,
@@ -266,7 +266,7 @@ class __$$_stateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? user = null,
+    Object? user = freezed,
     Object? message = null,
   }) {
     return _then(_$_state(
@@ -274,7 +274,7 @@ class __$$_stateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as ChatUser,
@@ -314,12 +314,13 @@ class _$_state implements _state {
         (other.runtimeType == runtimeType &&
             other is _$_state &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, user, message);
+  int get hashCode => Object.hash(
+      runtimeType, status, const DeepCollectionEquality().hash(user), message);
 
   @JsonKey(ignore: true)
   @override

@@ -7,8 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
-import 'package:mini_chat/models/message_model.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/message_model.dart';
 
 class APIs {
   static FirebaseAuth auth = FirebaseAuth.instance;

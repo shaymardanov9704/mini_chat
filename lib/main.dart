@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mini_chat/di.dart';
 import 'package:mini_chat/presentation/pages/auth/auth_page.dart';
-import 'package:mini_chat/screens/splash_screen.dart';
 
 late Size mq;
 

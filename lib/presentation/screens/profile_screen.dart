@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mini_chat/core/firebase/apis.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
-import 'package:mini_chat/screens/auth/auth.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
+import 'package:mini_chat/main.dart';
+import 'package:mini_chat/presentation/screens/auth/auth.dart';
 
 import '../helper/dialogs.dart';
-import '../main.dart';
 
 //profile screen -- to show signed in user info
 class ProfileScreen extends StatefulWidget {

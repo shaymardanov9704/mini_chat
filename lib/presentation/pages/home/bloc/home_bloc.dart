@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mini_chat/core/firebase/users_service.dart';
 import 'package:mini_chat/core/hive/user_hive.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
 
 part 'home_event.dart';
 

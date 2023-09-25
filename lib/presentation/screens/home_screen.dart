@@ -4,10 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mini_chat/core/firebase/apis.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
-
+import 'package:mini_chat/core/models/chat_user_model.dart';
+import 'package:mini_chat/main.dart';
 import '../helper/dialogs.dart';
-import '../main.dart';
 import '../widgets/chat_user_card.dart';
 import 'profile_screen.dart';
 

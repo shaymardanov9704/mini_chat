@@ -7,11 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mini_chat/core/firebase/apis.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
-import 'package:mini_chat/models/message_model.dart';
-
+import 'package:mini_chat/core/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/message_model.dart';
+import 'package:mini_chat/main.dart';
 import '../helper/my_date_util.dart';
-import '../main.dart';
 import '../widgets/message_card.dart';
 import 'view_profile_screen.dart';
 

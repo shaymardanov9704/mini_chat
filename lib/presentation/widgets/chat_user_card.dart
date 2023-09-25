@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/firebase/apis.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
-import 'package:mini_chat/models/message_model.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/message_model.dart';
+import '../../main.dart';
 import '../helper/my_date_util.dart';
-import '../main.dart';
 import '../screens/chat_screen.dart';
 import 'dialogs/profile_dialog.dart';
 

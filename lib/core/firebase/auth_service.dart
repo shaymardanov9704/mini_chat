@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mini_chat/core/firebase/firestore_service.dart';
 import 'package:mini_chat/core/hive/user_hive.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
 
 class AuthService {
   final FirestoreService firestoreService;

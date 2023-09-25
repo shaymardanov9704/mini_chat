@@ -5,7 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:mini_chat/core/firebase/auth_service.dart';
 import 'package:mini_chat/core/firebase/firestore_service.dart';
 import 'package:mini_chat/core/firebase/storage_service.dart';
-import 'package:mini_chat/models/chat_user_model.dart';
+import 'package:mini_chat/core/models/chat_user_model.dart';
 
 class UsersService {
   final FirestoreService firestoreService;
