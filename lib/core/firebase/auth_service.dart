@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mini_chat/core/firebase/firestore_service.dart';
@@ -31,6 +32,13 @@ class AuthService {
   Future<bool> userExists({required String uid}) async {
     return (await firestoreService.firestore.collection('users').doc(uid).get())
         .exists;
+  }
+
+  Future<void> fetchUser(String uid) async {
+    DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await firestoreService.firestore.collection('users').doc(uid).get();
+    final user = ChatUser.fromJson(snapshot.data()!);
+    await hive.saveUserInfo(user);
   }
 
   Future createUser() async {

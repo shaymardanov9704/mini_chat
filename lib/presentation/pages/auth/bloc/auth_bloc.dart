@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mini_chat/core/firebase/auth_service.dart';
-import 'package:mini_chat/core/hive/user_hive.dart';
 
 part 'auth_event.dart';
 
@@ -21,12 +20,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      emit(state.copyWith(status: EnumStatus.loading));
       await _authService.signInWithGoogle();
+      emit(state.copyWith(status: EnumStatus.loading));
       final uid = _authService.auth.currentUser!.uid;
       final userExist = await _authService.userExists(uid: uid);
       if (userExist == false) {
         await _authService.createUser();
+      } else {
+        await _authService.fetchUser(uid);
       }
       emit(state.copyWith(status: EnumStatus.success));
     } catch (e) {

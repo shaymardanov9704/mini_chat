@@ -29,11 +29,14 @@ class _AuthPageState extends State<AuthPage> {
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.status == EnumStatus.success) {
+            EasyLoading.showSuccess("Succes");
             Navigator.pushReplacement(
               context,
               CupertinoPageRoute(builder: (_) => const HomePage()),
             );
-          } else {
+          } else if (state.status == EnumStatus.loading) {
+            EasyLoading.show();
+          } else if (state.status == EnumStatus.fail) {
             EasyLoading.showError("Error");
           }
         },
