@@ -13,10 +13,8 @@ class AuthService {
   AuthService(this.firestoreService, this.hive);
 
   Future signInWithGoogle() async {
-    // await InternetAddress.lookup('google.com');
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
+    final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -30,15 +28,14 @@ class AuthService {
   }
 
   Future<bool> userExists({required String uid}) async {
-    return (await firestoreService.firestore.collection('users').doc(uid).get())
-        .exists;
+    return (await firestoreService.firestore.collection('users').doc(uid).get()).exists;
   }
 
   Future<void> fetchUser(String uid) async {
-    DocumentSnapshot<Map<String, dynamic>> snapshot =
-        await firestoreService.firestore.collection('users').doc(uid).get();
-    final user = ChatUser.fromJson(snapshot.data()!);
-    await hive.saveUserInfo(user);
+    // DocumentSnapshot<Map<String, dynamic>> snapshot =
+    //     await firestoreService.firestore.collection('users').doc(uid).get();
+
+    await hive.saveUserId(uid);
   }
 
   Future createUser() async {
@@ -56,7 +53,7 @@ class AuthService {
       pushToken: '',
     );
 
-    await hive.saveUserInfo(chatUser);
+    await hive.saveUserId(user.uid);
     return await firestoreService.firestore
         .collection('users')
         .doc(user.uid)

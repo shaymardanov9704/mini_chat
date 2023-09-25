@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage> {
       value: bloc,
       child: BlocConsumer<SplashBloc, SplashState>(
         listener: (context, state) {
-          if (state.user.id.isNotEmpty) {
+          if (state.uid.isNotEmpty) {
             Navigator.pushReplacement(
               context,
               CupertinoPageRoute(builder: (_) => const HomePage()),

@@ -34,11 +34,17 @@ class UsersService {
         .snapshots();
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getUserInfo(ChatUser chatUser) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getUserInfo(String uid) {
     return firestoreService.firestore
         .collection('users')
-        .where('id', isEqualTo: chatUser.id)
+        .where('id', isEqualTo: uid)
         .snapshots();
+  }
+
+  Future<ChatUser> getUserInformation(String uid) async {
+    DocumentSnapshot<Map<String, dynamic>> res =
+        await firestoreService.firestore.collection('users').doc(uid).get();
+    return ChatUser.fromJson(res.data()!);
   }
 
   Future<void> updateUserInfo(String name, String about) async {
@@ -99,7 +105,6 @@ class UsersService {
       },
     );
   }
-
 
 // static Future<List<ChatUser>> fetchUsers() async {
 //   List<ChatUser> userList = [];

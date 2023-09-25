@@ -4,7 +4,7 @@ part of 'splash_bloc.dart';
 abstract class SplashState with _$SplashState {
   factory SplashState.state({
     @Default(EnumStatus.initial) EnumStatus status,
-    required ChatUser user,
+    @Default("")String uid,
     @Default("") String message,
   }) = _state;
 }

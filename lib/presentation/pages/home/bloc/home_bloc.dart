@@ -14,7 +14,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final UserHive hive;
   final UsersService usersService;
 
-  HomeBloc(this.hive, this.usersService) : super(HomeState.state(user: ChatUser.fromJson({}))) {
+  HomeBloc(this.hive, this.usersService)
+      : super(HomeState.state(user: ChatUser.fromJson({}))) {
     on<_init>(_emitInit);
   }
 
@@ -22,7 +23,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _init event,
     Emitter<HomeState> emit,
   ) async {
-    final user = await hive.getUserInfo();
+    final uid = await hive.getUserId();
+    final user = await usersService.getUserInformation(uid);
     emit(state.copyWith(user: user));
   }
 }

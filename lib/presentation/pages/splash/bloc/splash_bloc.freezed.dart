@@ -165,22 +165,22 @@ abstract class _init implements SplashEvent {
 /// @nodoc
 mixin _$SplashState {
   EnumStatus get status => throw _privateConstructorUsedError;
-  ChatUser get user => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EnumStatus status, ChatUser user, String message)
+    required TResult Function(EnumStatus status, String uid, String message)
         state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EnumStatus status, ChatUser user, String message)? state,
+    TResult? Function(EnumStatus status, String uid, String message)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EnumStatus status, ChatUser user, String message)? state,
+    TResult Function(EnumStatus status, String uid, String message)? state,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -212,7 +212,7 @@ abstract class $SplashStateCopyWith<$Res> {
           SplashState value, $Res Function(SplashState) then) =
       _$SplashStateCopyWithImpl<$Res, SplashState>;
   @useResult
-  $Res call({EnumStatus status, ChatUser user, String message});
+  $Res call({EnumStatus status, String uid, String message});
 }
 
 /// @nodoc
@@ -229,7 +229,7 @@ class _$SplashStateCopyWithImpl<$Res, $Val extends SplashState>
   @override
   $Res call({
     Object? status = null,
-    Object? user = freezed,
+    Object? uid = null,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
@@ -237,10 +237,10 @@ class _$SplashStateCopyWithImpl<$Res, $Val extends SplashState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as ChatUser,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -255,7 +255,7 @@ abstract class _$$_stateCopyWith<$Res> implements $SplashStateCopyWith<$Res> {
       __$$_stateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({EnumStatus status, ChatUser user, String message});
+  $Res call({EnumStatus status, String uid, String message});
 }
 
 /// @nodoc
@@ -269,7 +269,7 @@ class __$$_stateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? user = freezed,
+    Object? uid = null,
     Object? message = null,
   }) {
     return _then(_$_state(
@@ -277,10 +277,10 @@ class __$$_stateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as ChatUser,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -293,22 +293,21 @@ class __$$_stateCopyWithImpl<$Res>
 
 class _$_state implements _state {
   _$_state(
-      {this.status = EnumStatus.initial,
-      required this.user,
-      this.message = ""});
+      {this.status = EnumStatus.initial, this.uid = "", this.message = ""});
 
   @override
   @JsonKey()
   final EnumStatus status;
   @override
-  final ChatUser user;
+  @JsonKey()
+  final String uid;
   @override
   @JsonKey()
   final String message;
 
   @override
   String toString() {
-    return 'SplashState.state(status: $status, user: $user, message: $message)';
+    return 'SplashState.state(status: $status, uid: $uid, message: $message)';
   }
 
   @override
@@ -317,13 +316,12 @@ class _$_state implements _state {
         (other.runtimeType == runtimeType &&
             other is _$_state &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(user), message);
+  int get hashCode => Object.hash(runtimeType, status, uid, message);
 
   @JsonKey(ignore: true)
   @override
@@ -334,28 +332,28 @@ class _$_state implements _state {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EnumStatus status, ChatUser user, String message)
+    required TResult Function(EnumStatus status, String uid, String message)
         state,
   }) {
-    return state(status, user, message);
+    return state(status, uid, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EnumStatus status, ChatUser user, String message)? state,
+    TResult? Function(EnumStatus status, String uid, String message)? state,
   }) {
-    return state?.call(status, user, message);
+    return state?.call(status, uid, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EnumStatus status, ChatUser user, String message)? state,
+    TResult Function(EnumStatus status, String uid, String message)? state,
     required TResult orElse(),
   }) {
     if (state != null) {
-      return state(status, user, message);
+      return state(status, uid, message);
     }
     return orElse();
   }
@@ -392,13 +390,13 @@ class _$_state implements _state {
 abstract class _state implements SplashState {
   factory _state(
       {final EnumStatus status,
-      required final ChatUser user,
+      final String uid,
       final String message}) = _$_state;
 
   @override
   EnumStatus get status;
   @override
-  ChatUser get user;
+  String get uid;
   @override
   String get message;
   @override

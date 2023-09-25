@@ -1,18 +1,17 @@
 import 'package:mini_chat/core/hive/hive_base.dart';
-import 'package:mini_chat/core/models/chat_user_model.dart';
 
 class UserHive {
   final HiveBase _base;
 
   UserHive(this._base);
 
-  Future<void> saveUserInfo(ChatUser user) async {
-    await _base.userBox.put("user", user.toJson());
+  Future<void> saveUserId(String id) async {
+    await _base.userBox.put("user_id", id);
   }
 
-  Future<ChatUser> getUserInfo() async {
-    final userJson = await _base.userBox.get("user");
-    return ChatUser.fromJson(userJson);
+  Future<String> getUserId() async {
+    final userId = await _base.userBox.get("user_id");
+    return userId;
   }
 
   Future<void> clear() async {
