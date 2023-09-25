@@ -1,15 +1,15 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mini_chat/core/firebase/firestore_service.dart';
+import 'package:mini_chat/core/hive/user_hive.dart';
 import 'package:mini_chat/models/chat_user_model.dart';
 
 class AuthService {
   final FirestoreService firestoreService;
+  final UserHive hive;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  AuthService(this.firestoreService);
+  AuthService(this.firestoreService, this.hive);
 
   Future signInWithGoogle() async {
     // await InternetAddress.lookup('google.com');
@@ -23,8 +23,14 @@ class AuthService {
     return await auth.signInWithCredential(credential);
   }
 
+  Future signOut() async {
+    await hive.clear();
+    await auth.signOut();
+  }
+
   Future<bool> userExists({required String uid}) async {
-    return (await firestoreService.firestore.collection('users').doc(uid).get()).exists;
+    return (await firestoreService.firestore.collection('users').doc(uid).get())
+        .exists;
   }
 
   Future createUser() async {
@@ -42,6 +48,7 @@ class AuthService {
       pushToken: '',
     );
 
+    await hive.saveUserInfo(chatUser);
     return await firestoreService.firestore
         .collection('users')
         .doc(user.uid)

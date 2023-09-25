@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_bloc.dart';
+part of 'home_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,51 +15,51 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AuthEvent {
+mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() auth,
+    required TResult Function() init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? auth,
+    TResult? Function()? init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? auth,
+    TResult Function()? init,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_auth value) auth,
+    required TResult Function(_init value) init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_auth value)? auth,
+    TResult? Function(_init value)? init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_auth value)? auth,
+    TResult Function(_init value)? init,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthEventCopyWith<$Res> {
-  factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
-      _$AuthEventCopyWithImpl<$Res, AuthEvent>;
+abstract class $HomeEventCopyWith<$Res> {
+  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
+      _$HomeEventCopyWithImpl<$Res, HomeEvent>;
 }
 
 /// @nodoc
-class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
-    implements $AuthEventCopyWith<$Res> {
-  _$AuthEventCopyWithImpl(this._value, this._then);
+class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
+    implements $HomeEventCopyWith<$Res> {
+  _$HomeEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -68,32 +68,32 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 }
 
 /// @nodoc
-abstract class _$$_authCopyWith<$Res> {
-  factory _$$_authCopyWith(_$_auth value, $Res Function(_$_auth) then) =
-      __$$_authCopyWithImpl<$Res>;
+abstract class _$$_initCopyWith<$Res> {
+  factory _$$_initCopyWith(_$_init value, $Res Function(_$_init) then) =
+      __$$_initCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_authCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res, _$_auth>
-    implements _$$_authCopyWith<$Res> {
-  __$$_authCopyWithImpl(_$_auth _value, $Res Function(_$_auth) _then)
+class __$$_initCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res, _$_init>
+    implements _$$_initCopyWith<$Res> {
+  __$$_initCopyWithImpl(_$_init _value, $Res Function(_$_init) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_auth implements _auth {
-  _$_auth();
+class _$_init implements _init {
+  _$_init();
 
   @override
   String toString() {
-    return 'AuthEvent.auth()';
+    return 'HomeEvent.init()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_auth);
+        (other.runtimeType == runtimeType && other is _$_init);
   }
 
   @override
@@ -102,27 +102,27 @@ class _$_auth implements _auth {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() auth,
+    required TResult Function() init,
   }) {
-    return auth();
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? auth,
+    TResult? Function()? init,
   }) {
-    return auth?.call();
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? auth,
+    TResult Function()? init,
     required TResult orElse(),
   }) {
-    if (auth != null) {
-      return auth();
+    if (init != null) {
+      return init();
     }
     return orElse();
   }
@@ -130,53 +130,55 @@ class _$_auth implements _auth {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_auth value) auth,
+    required TResult Function(_init value) init,
   }) {
-    return auth(this);
+    return init(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_auth value)? auth,
+    TResult? Function(_init value)? init,
   }) {
-    return auth?.call(this);
+    return init?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_auth value)? auth,
+    TResult Function(_init value)? init,
     required TResult orElse(),
   }) {
-    if (auth != null) {
-      return auth(this);
+    if (init != null) {
+      return init(this);
     }
     return orElse();
   }
 }
 
-abstract class _auth implements AuthEvent {
-  factory _auth() = _$_auth;
+abstract class _init implements HomeEvent {
+  factory _init() = _$_init;
 }
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$HomeState {
   EnumStatus get status => throw _privateConstructorUsedError;
+  ChatUser get user => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EnumStatus status, String message) state,
+    required TResult Function(EnumStatus status, ChatUser user, String message)
+        state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EnumStatus status, String message)? state,
+    TResult? Function(EnumStatus status, ChatUser user, String message)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EnumStatus status, String message)? state,
+    TResult Function(EnumStatus status, ChatUser user, String message)? state,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,22 +200,22 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AuthStateCopyWith<AuthState> get copyWith =>
+  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+abstract class $HomeStateCopyWith<$Res> {
+  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
+      _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({EnumStatus status, String message});
+  $Res call({EnumStatus status, ChatUser user, String message});
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
+    implements $HomeStateCopyWith<$Res> {
+  _$HomeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -224,6 +226,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? status = null,
+    Object? user = null,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
@@ -231,6 +234,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as ChatUser,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -240,17 +247,17 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 }
 
 /// @nodoc
-abstract class _$$_stateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+abstract class _$$_stateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   factory _$$_stateCopyWith(_$_state value, $Res Function(_$_state) then) =
       __$$_stateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({EnumStatus status, String message});
+  $Res call({EnumStatus status, ChatUser user, String message});
 }
 
 /// @nodoc
 class __$$_stateCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_state>
+    extends _$HomeStateCopyWithImpl<$Res, _$_state>
     implements _$$_stateCopyWith<$Res> {
   __$$_stateCopyWithImpl(_$_state _value, $Res Function(_$_state) _then)
       : super(_value, _then);
@@ -259,6 +266,7 @@ class __$$_stateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? user = null,
     Object? message = null,
   }) {
     return _then(_$_state(
@@ -266,6 +274,10 @@ class __$$_stateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as ChatUser,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -277,18 +289,23 @@ class __$$_stateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_state implements _state {
-  _$_state({this.status = EnumStatus.initial, this.message = ""});
+  _$_state(
+      {this.status = EnumStatus.initial,
+      required this.user,
+      this.message = ""});
 
   @override
   @JsonKey()
   final EnumStatus status;
+  @override
+  final ChatUser user;
   @override
   @JsonKey()
   final String message;
 
   @override
   String toString() {
-    return 'AuthState.state(status: $status, message: $message)';
+    return 'HomeState.state(status: $status, user: $user, message: $message)';
   }
 
   @override
@@ -297,11 +314,12 @@ class _$_state implements _state {
         (other.runtimeType == runtimeType &&
             other is _$_state &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, status, user, message);
 
   @JsonKey(ignore: true)
   @override
@@ -312,27 +330,28 @@ class _$_state implements _state {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EnumStatus status, String message) state,
+    required TResult Function(EnumStatus status, ChatUser user, String message)
+        state,
   }) {
-    return state(status, message);
+    return state(status, user, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EnumStatus status, String message)? state,
+    TResult? Function(EnumStatus status, ChatUser user, String message)? state,
   }) {
-    return state?.call(status, message);
+    return state?.call(status, user, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EnumStatus status, String message)? state,
+    TResult Function(EnumStatus status, ChatUser user, String message)? state,
     required TResult orElse(),
   }) {
     if (state != null) {
-      return state(status, message);
+      return state(status, user, message);
     }
     return orElse();
   }
@@ -366,11 +385,16 @@ class _$_state implements _state {
   }
 }
 
-abstract class _state implements AuthState {
-  factory _state({final EnumStatus status, final String message}) = _$_state;
+abstract class _state implements HomeState {
+  factory _state(
+      {final EnumStatus status,
+      required final ChatUser user,
+      final String message}) = _$_state;
 
   @override
   EnumStatus get status;
+  @override
+  ChatUser get user;
   @override
   String get message;
   @override

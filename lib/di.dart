@@ -34,7 +34,8 @@ Future<void> _setupConfigs() async {
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
   );
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,name: "Firebase");
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform, name: "Firebase");
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableBuildModes = [];
   EasyLoading.instance
@@ -62,7 +63,7 @@ Future<void> _setupFactories() async {
         di.get(),
         di.get<StorageService>(),
       ));
-  di.registerFactory(() => AuthService(di.get()));
+  di.registerFactory(() => AuthService(di.get(), di.get()));
   di.registerFactory(() => StorageService(di.get()));
   di.registerFactory(() => UserHive(di.get<HiveBase>()));
   di.registerFactory(() => CacheHive(di.get<HiveBase>()));

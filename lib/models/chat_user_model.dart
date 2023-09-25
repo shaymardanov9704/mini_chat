@@ -27,7 +27,7 @@ class ChatUser {
       about: json['about'] ?? '',
       name: json['name'] ?? '',
       createdAt: json['created_at'] ?? '',
-      isOnline: json['is_online'] ?? '',
+      isOnline: json['is_online'] ?? false,
       id: json['id'] ?? '',
       lastActive: json['last_active'] ?? '',
       email: json['email'] ?? '',
@@ -47,5 +47,15 @@ class ChatUser {
     data['email'] = email;
     data['push_token'] = pushToken;
     return data;
+  }
+
+  void shaw(){
+    print(image);
+    print(name);
+    print(email);
+    print(id);
+    print(lastActive);
+    print(pushToken);
+    print(about);
   }
 }

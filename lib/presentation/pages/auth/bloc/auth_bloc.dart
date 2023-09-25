@@ -10,26 +10,27 @@ part 'auth_state.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final UserHive _hive;
   final AuthService _authService;
 
-  AuthBloc(this._authService, this._hive) : super(AuthState.state()) {
-    on<_init>(_emitInit);
+  AuthBloc(this._authService) : super(AuthState.state()) {
     on<_auth>(_emitAuth);
   }
-
-  Future<void> _emitInit(
-    _init event,
-    Emitter<AuthState> emit,
-  ) async {}
 
   Future<void> _emitAuth(
     _auth event,
     Emitter<AuthState> emit,
   ) async {
-    await _authService.signInWithGoogle();
-    final userExist =
-        await _authService.userExists(uid: _authService.auth.currentUser!.uid);
-    userExist == false ? _authService.createUser() : null;
+    try {
+      emit(state.copyWith(status: EnumStatus.loading));
+      await _authService.signInWithGoogle();
+      final uid = _authService.auth.currentUser!.uid;
+      final userExist = await _authService.userExists(uid: uid);
+      if (userExist == false) {
+        await _authService.createUser();
+      }
+      emit(state.copyWith(status: EnumStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: EnumStatus.fail));
+    }
   }
 }
