@@ -11,7 +11,7 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
-  final bloc = UsersBloc();
+  final bloc = UsersBloc(di.get());
 
   @override
   void dispose() {
@@ -20,13 +20,25 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   @override
+  void initState() {
+    bloc.add(UsersEvent.init());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: bloc,
       child: BlocBuilder<UsersBloc, UsersState>(
         builder: (context, state) {
-           return Scaffold(
+          return Scaffold(
             appBar: AppBar(title: const Text("Users")),
+            body: ListView.builder(
+              itemCount: state.users.length,
+              itemBuilder: (_, i) {
+                return Text(state.users[i].name);
+              },
+            ),
           );
         },
       ),

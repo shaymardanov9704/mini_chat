@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mini_chat/core/firebase/auth_service.dart';
 import 'package:mini_chat/core/firebase/firestore_service.dart';
 import 'package:mini_chat/core/firebase/storage_service.dart';
@@ -32,6 +33,15 @@ class UsersService {
         .collection('users')
         .where('id', whereIn: userIds.isEmpty ? [''] : userIds)
         .snapshots();
+  }
+
+  Future<List<ChatUser>> fetchAllUsers() async {
+    List<ChatUser> users = [];
+    final res = await firestoreService.firestore.collection('users').get();
+    for (var doc in res.docs) {
+      users.add(ChatUser.fromJson(doc.data()));
+    }
+    return users;
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getUserInfo(String uid) {
