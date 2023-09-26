@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mini_chat/di.dart';
+import 'package:mini_chat/presentation/pages/auth/auth_page.dart';
 import 'package:mini_chat/presentation/pages/splash/splash_page.dart';
+import 'package:mini_chat/presentation/screens/splash_screen.dart';
 
 late Size mq;
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Mini Chat',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: const SplashPage(),
+      home: const SplashScreen(),
       builder: EasyLoading.init(),
     );
   }

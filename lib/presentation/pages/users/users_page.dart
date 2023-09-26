@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_chat/di.dart';
 import 'bloc/users_bloc.dart';
 
 class UsersPage extends StatefulWidget {

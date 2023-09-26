@@ -14,7 +14,7 @@ class APIs {
   static FirebaseAuth auth = FirebaseAuth.instance;
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static FirebaseStorage storage = FirebaseStorage.instance;
-
+  static FirebaseMessaging fMessaging = FirebaseMessaging.instance;
   // for storing self information
   static ChatUser me = ChatUser(
     id: user.uid,
@@ -30,9 +30,6 @@ class APIs {
 
   // to return current user
   static User get user => auth.currentUser!;
-
-  // for accessing firebase messaging (Push Notification)
-  static FirebaseMessaging fMessaging = FirebaseMessaging.instance;
 
   // for getting firebase messaging token
   static Future<void> getFirebaseMessagingToken() async {

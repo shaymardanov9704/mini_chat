@@ -44,7 +44,7 @@ class UsersService {
   Future<ChatUser> getUserInformation(String uid) async {
     DocumentSnapshot<Map<String, dynamic>> res =
         await firestoreService.firestore.collection('users').doc(uid).get();
-    return ChatUser.fromJson(res.data()!);
+    return ChatUser.fromJson(res.data() ?? {});
   }
 
   Future<void> updateUserInfo(String name, String about) async {

@@ -7,8 +7,7 @@ part 'users_state.dart';
 
 part 'users_bloc.freezed.dart';
 
-class UsersBloc
-    extends Bloc<UsersEvent, UsersState> {
+class UsersBloc extends Bloc<UsersEvent, UsersState> {
   UsersBloc() : super(UsersState.state()) {
     on<_init>(_emitInit);
   }
@@ -18,4 +17,3 @@ class UsersBloc
     Emitter<UsersState> emit,
   ) async {}
 }
-

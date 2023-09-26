@@ -42,11 +42,45 @@ class _AuthPageState extends State<AuthPage> {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(title: const Text("AuthPage")),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                bloc.add(AuthEvent.auth());
-              },
+            body: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Image.asset("images/icon.png"),
+                      const Text("Mini Chat App",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      bloc.add(AuthEvent.auth());
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.blue,
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("images/google.png", width: 25),
+                            const SizedBox(width: 16),
+                            const Text(
+                              "Sign In With Google",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         },
