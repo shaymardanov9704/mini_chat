@@ -19,9 +19,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     _init event,
     Emitter<SplashState> emit,
   ) async {
-    emit(state.copyWith(status: EnumStatus.initial));
     final uid = await hive.getUserId();
-
-    emit(state.copyWith(uid: uid, status: EnumStatus.success));
+    uid.isNotEmpty
+        ? emit(state.copyWith(status: EnumStatus.success))
+        : emit(state.copyWith(status: EnumStatus.auth));
   }
 }

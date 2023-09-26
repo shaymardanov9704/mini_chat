@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_chat/di.dart';
+import 'package:mini_chat/presentation/pages/auth/auth_page.dart';
 import 'package:mini_chat/presentation/pages/home/home_page.dart';
 import 'bloc/splash_bloc.dart';
 
@@ -33,11 +34,20 @@ class _SplashPageState extends State<SplashPage> {
       value: bloc,
       child: BlocConsumer<SplashBloc, SplashState>(
         listener: (context, state) {
-          if (state.uid.isNotEmpty) {
-            Navigator.pushReplacement(
-              context,
-              CupertinoPageRoute(builder: (_) => const HomePage()),
-            );
+          if (state.status == EnumStatus.success) {
+            Future.delayed(const Duration(seconds: 3), () {
+              Navigator.pushReplacement(
+                context,
+                CupertinoPageRoute(builder: (_) => const HomePage()),
+              );
+            });
+          } else if (state.status == EnumStatus.auth) {
+            Future.delayed(const Duration(seconds: 3), () {
+              Navigator.pushReplacement(
+                context,
+                CupertinoPageRoute(builder: (_) => const AuthPage()),
+              );
+            });
           }
         },
         builder: (context, state) {

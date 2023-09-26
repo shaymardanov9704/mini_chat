@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Mini Chat',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: const SplashScreen(),
+      home: const SplashPage( ),
       builder: EasyLoading.init(),
     );
   }

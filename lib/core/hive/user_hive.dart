@@ -5,13 +5,13 @@ class UserHive {
 
   UserHive(this._base);
 
-  Future<void> saveUserId(String id) async {
-    await _base.userBox.put("user_id", id);
+  Future<void> saveUserId(String uid) async {
+    await _base.userBox.put("user_id", uid);
   }
 
   Future<String> getUserId() async {
     final userId = await _base.userBox.get("user_id");
-    return userId;
+    return userId ?? "";
   }
 
   Future<void> clear() async {

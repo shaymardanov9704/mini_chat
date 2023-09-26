@@ -4,9 +4,8 @@ part of 'splash_bloc.dart';
 abstract class SplashState with _$SplashState {
   factory SplashState.state({
     @Default(EnumStatus.initial) EnumStatus status,
-    @Default("")String uid,
     @Default("") String message,
   }) = _state;
 }
 
-enum EnumStatus { initial, loading, fail, success }
+enum EnumStatus { initial, loading, fail, success, auth}
