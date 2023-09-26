@@ -21,10 +21,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     try {
       await _authService.signInWithGoogle();
+    } catch (e) {
+      emit(state.copyWith(status: EnumStatus.fail));
+    }
+    try {
       emit(state.copyWith(status: EnumStatus.loading));
       final uid = _authService.auth.currentUser!.uid;
-      final userExist = await _authService.userExists(uid: uid);
-      if (userExist == false) {
+      if (await _authService.userExists(uid: uid)) {
         await _authService.createUser();
       } else {
         await _authService.fetchUser(uid);
