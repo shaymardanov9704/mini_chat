@@ -4,6 +4,7 @@ part of 'chats_bloc.dart';
 abstract class ChatsState with _$ChatsState {
   factory ChatsState.state({
     @Default(EnumStatus.initial) EnumStatus status,
+    @Default([])List<ChatUser>users,
     @Default("") String message,
   }) = _state;
 }

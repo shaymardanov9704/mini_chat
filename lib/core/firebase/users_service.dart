@@ -44,6 +44,34 @@ class UsersService {
     return users;
   }
 
+  Future<List<ChatUser>> fetchMyUsers() async {
+    final uid = authService.auth.currentUser!.uid;
+    List<ChatUser> users = [];
+    final res = await firestoreService.firestore
+        .collection('users')
+        .doc(uid)
+        .collection('my_users')
+        .get();
+    for (var doc in res.docs) {
+      final user = await fetchUser(doc.id);
+      users.add(user);
+    }
+    return users;
+  }
+
+  Future<ChatUser> fetchUser(String uid) async {
+    ChatUser user = ChatUser.fromJson({});
+    final res = await firestoreService.firestore
+        .collection('users')
+        .where('id', isEqualTo: uid)
+        .get();
+
+    for (var doc in res.docs) {
+     user = ChatUser.fromJson(doc.data());
+    }
+    return user;
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> getUserInfo(String uid) {
     return firestoreService.firestore
         .collection('users')

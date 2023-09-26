@@ -25,6 +25,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
 
   @override
   Widget build(BuildContext context) {
+    mq = MediaQuery.of(context).size;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: mq.width * .04, vertical: 4),
       // color: Colors.blue.shade100,

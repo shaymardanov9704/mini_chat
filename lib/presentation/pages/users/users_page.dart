@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_chat/di.dart';
+import 'package:mini_chat/presentation/widgets/chat_user_card.dart';
 import 'bloc/users_bloc.dart';
 
 class UsersPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _UsersPageState extends State<UsersPage> {
             body: ListView.builder(
               itemCount: state.users.length,
               itemBuilder: (_, i) {
-                return Text(state.users[i].name);
+                return ChatUserCard(user: state.users[i]);
               },
             ),
           );

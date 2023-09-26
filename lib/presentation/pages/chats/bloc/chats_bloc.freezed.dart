@@ -165,20 +165,25 @@ abstract class _init implements ChatsEvent {
 /// @nodoc
 mixin _$ChatsState {
   EnumStatus get status => throw _privateConstructorUsedError;
+  List<ChatUser> get users => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EnumStatus status, String message) state,
+    required TResult Function(
+            EnumStatus status, List<ChatUser> users, String message)
+        state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EnumStatus status, String message)? state,
+    TResult? Function(EnumStatus status, List<ChatUser> users, String message)?
+        state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EnumStatus status, String message)? state,
+    TResult Function(EnumStatus status, List<ChatUser> users, String message)?
+        state,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -210,7 +215,7 @@ abstract class $ChatsStateCopyWith<$Res> {
           ChatsState value, $Res Function(ChatsState) then) =
       _$ChatsStateCopyWithImpl<$Res, ChatsState>;
   @useResult
-  $Res call({EnumStatus status, String message});
+  $Res call({EnumStatus status, List<ChatUser> users, String message});
 }
 
 /// @nodoc
@@ -227,6 +232,7 @@ class _$ChatsStateCopyWithImpl<$Res, $Val extends ChatsState>
   @override
   $Res call({
     Object? status = null,
+    Object? users = null,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
@@ -234,6 +240,10 @@ class _$ChatsStateCopyWithImpl<$Res, $Val extends ChatsState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<ChatUser>,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -248,7 +258,7 @@ abstract class _$$_stateCopyWith<$Res> implements $ChatsStateCopyWith<$Res> {
       __$$_stateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({EnumStatus status, String message});
+  $Res call({EnumStatus status, List<ChatUser> users, String message});
 }
 
 /// @nodoc
@@ -262,6 +272,7 @@ class __$$_stateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? users = null,
     Object? message = null,
   }) {
     return _then(_$_state(
@@ -269,6 +280,10 @@ class __$$_stateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as EnumStatus,
+      users: null == users
+          ? _value._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<ChatUser>,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -280,18 +295,31 @@ class __$$_stateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_state implements _state {
-  _$_state({this.status = EnumStatus.initial, this.message = ""});
+  _$_state(
+      {this.status = EnumStatus.initial,
+      final List<ChatUser> users = const [],
+      this.message = ""})
+      : _users = users;
 
   @override
   @JsonKey()
   final EnumStatus status;
+  final List<ChatUser> _users;
+  @override
+  @JsonKey()
+  List<ChatUser> get users {
+    if (_users is EqualUnmodifiableListView) return _users;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
+
   @override
   @JsonKey()
   final String message;
 
   @override
   String toString() {
-    return 'ChatsState.state(status: $status, message: $message)';
+    return 'ChatsState.state(status: $status, users: $users, message: $message)';
   }
 
   @override
@@ -300,11 +328,13 @@ class _$_state implements _state {
         (other.runtimeType == runtimeType &&
             other is _$_state &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other._users, _users) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(_users), message);
 
   @JsonKey(ignore: true)
   @override
@@ -315,27 +345,31 @@ class _$_state implements _state {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EnumStatus status, String message) state,
+    required TResult Function(
+            EnumStatus status, List<ChatUser> users, String message)
+        state,
   }) {
-    return state(status, message);
+    return state(status, users, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EnumStatus status, String message)? state,
+    TResult? Function(EnumStatus status, List<ChatUser> users, String message)?
+        state,
   }) {
-    return state?.call(status, message);
+    return state?.call(status, users, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EnumStatus status, String message)? state,
+    TResult Function(EnumStatus status, List<ChatUser> users, String message)?
+        state,
     required TResult orElse(),
   }) {
     if (state != null) {
-      return state(status, message);
+      return state(status, users, message);
     }
     return orElse();
   }
@@ -370,10 +404,15 @@ class _$_state implements _state {
 }
 
 abstract class _state implements ChatsState {
-  factory _state({final EnumStatus status, final String message}) = _$_state;
+  factory _state(
+      {final EnumStatus status,
+      final List<ChatUser> users,
+      final String message}) = _$_state;
 
   @override
   EnumStatus get status;
+  @override
+  List<ChatUser> get users;
   @override
   String get message;
   @override
