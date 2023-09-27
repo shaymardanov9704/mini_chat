@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, TargetPlatform;
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mini_chat/core/firebase/auth_service.dart';
@@ -78,13 +78,46 @@ class _MyHttpOverrides extends HttpOverrides {
   }
 }
 
+
+
+/// Default [FirebaseOptions] for use with your Firebase apps.
+///
+/// Example:
+/// ```dart
+/// import 'firebase_options.dart';
+/// // ...
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
+/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
+    if (kIsWeb) {
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+            'you can reconfigure this by running the FlutterFire CLI again.',
+      );
+    }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
         return ios;
+      case TargetPlatform.macOS:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+              'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.windows:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+              'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+              'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -93,23 +126,24 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBeszZHLYJNyjUhpujMH9yZ4ol9JqsAmPU',
-    appId: '1:288842837392:android:1353619813061d867a5715',
-    messagingSenderId: '288842837392',
-    projectId: 'we-chat-75f13',
-    storageBucket: 'we-chat-75f13.appspot.com',
+    apiKey: 'AIzaSyBytaD_roFj9ertV-wwIgS6P5aoCZ1tYxg',
+    appId: '1:41558850945:android:bab2c5a8bd83b0ca557c80',
+    messagingSenderId: '41558850945',
+    projectId: 'chateo-8fb31',
+    databaseURL: 'https://chateo-8fb31-default-rtdb.firebaseio.com',
+    storageBucket: 'chateo-8fb31.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCCYZoZ5DvuitZJ7qK5iWM3ARHBDoFFriY',
-    appId: '1:288842837392:ios:f39c8dc31525a6687a5715',
-    messagingSenderId: '288842837392',
-    projectId: 'we-chat-75f13',
-    storageBucket: 'we-chat-75f13.appspot.com',
-    androidClientId:
-        '288842837392-gvt1l790g0t1fmnurc5pmko3oss8b1tq.apps.googleusercontent.com',
-    iosClientId:
-        '288842837392-sgib97u6439i4jte3bo19u00fh663euu.apps.googleusercontent.com',
-    iosBundleId: 'com.harshRajpurohit.weChat',
+    apiKey: 'AIzaSyCy2rGX6mGRj4aRV8qEe4xki65h-7Mk-ks',
+    appId: '1:41558850945:ios:031f2875c9503aef557c80',
+    messagingSenderId: '41558850945',
+    projectId: 'chateo-8fb31',
+    databaseURL: 'https://chateo-8fb31-default-rtdb.firebaseio.com',
+    storageBucket: 'chateo-8fb31.appspot.com',
+    androidClientId: '41558850945-eqe8atqondnoug8khfv5m56ejuh2ejrd.apps.googleusercontent.com',
+    iosClientId: '41558850945-vlflr1hp74fa1ovhiahtdbhh65rmhhkh.apps.googleusercontent.com',
+    iosBundleId: 'com.example.miniChat',
   );
 }
+

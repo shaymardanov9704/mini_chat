@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "41558850945",
+    "firebase_url": "https://chateo-8fb31-default-rtdb.firebaseio.com",
     "project_id": "chateo-8fb31",
     "storage_bucket": "chateo-8fb31.appspot.com"
   },
@@ -22,7 +23,7 @@
           }
         },
         {
-          "client_id": "41558850945-g4bhtm1s8554vp6o7l4pbft57ok1orf9.apps.googleusercontent.com",
+          "client_id": "41558850945-352ngs3albtppe85s8sfdlcorbur6mva.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "41558850945-g4bhtm1s8554vp6o7l4pbft57ok1orf9.apps.googleusercontent.com",
+              "client_id": "41558850945-352ngs3albtppe85s8sfdlcorbur6mva.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

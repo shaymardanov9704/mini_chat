@@ -31,9 +31,6 @@ class AuthService {
   }
 
   Future<void> fetchUser(String uid) async {
-    // DocumentSnapshot<Map<String, dynamic>> snapshot =
-    //     await firestoreService.firestore.collection('users').doc(uid).get();
-
     await hive.saveUserId(uid);
   }
 

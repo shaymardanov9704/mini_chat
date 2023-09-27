@@ -1,32 +1,37 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:mini_chat/core/firebase/auth_service.dart';
-// import 'package:mini_chat/models/chat_user_model.dart';
-// import 'package:mini_chat/models/message_model.dart';
+// import 'package:mini_chat/core/firebase/firestore_service.dart';
+// import 'package:mini_chat/core/models/chat_user_model.dart';
+// import 'package:mini_chat/core/models/message_model.dart';
 //
 // class ChatService {
-//   AuthService authService;
+//   final AuthService authService;
+//   final FirestoreService firestoreService;
 //
-//   ChatService(this.authService);
+//   ChatService(this.authService, this.firestoreService);
 //
-//
-//   String getConversationID(String id) => user.uid.hashCode <= id.hashCode
-//       ? '${user.uid}_$id'
-//       : '${id}_${user.uid}';
+//   String getConversationID(String id) {
+//     final user = authService.auth.currentUser!;
+//     return user.uid.hashCode <= id.hashCode
+//         ? '${user.uid}_$id'
+//         : '${id}_${user.uid}';
+//   }
 //
 //   // for getting all messages of a specific conversation from firestore database
-//   static Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessages(
-//       ChatUser user) {
-//     return firestore
-//         .collection('chats/${getConversationID(user.id)}/messages/')
+//   Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessages(ChatUser user) {
+//     final user = authService.auth.currentUser!;
+//     return firestoreService.firestore
+//         .collection('chats/${getConversationID(user.uid)}/messages/')
 //         .orderBy('sent', descending: true)
 //         .snapshots();
 //   }
 //
 //   // for sending message
-//   static Future<void> sendMessage(
+//   Future<void> sendMessage(
 //     ChatUser chatUser,
 //     String msg,
 //     Type type,
+//     String uid,
 //   ) async {
 //     //message sending time (also used as id)
 //     final time = DateTime.now().millisecondsSinceEpoch.toString();
@@ -37,27 +42,26 @@
 //         msg: msg,
 //         read: '',
 //         type: type,
-//         fromId: user.uid,
+//         fromId: uid,
 //         sent: time);
 //
-//     final ref = firestore
+//     final ref = firestoreService.firestore
 //         .collection('chats/${getConversationID(chatUser.id)}/messages/');
 //     await ref.doc(time).set(message.toJson()).then((value) =>
 //         sendPushNotification(chatUser, type == Type.text ? msg : 'image'));
 //   }
 //
 //   //update read status of message
-//   static Future<void> updateMessageReadStatus(Message message) async {
-//     firestore
+//   Future<void> updateMessageReadStatus(Message message) async {
+//     firestoreService.firestore
 //         .collection('chats/${getConversationID(message.fromId)}/messages/')
 //         .doc(message.sent)
 //         .update({'read': DateTime.now().millisecondsSinceEpoch.toString()});
 //   }
 //
 //   //get only last message of a specific chat
-//   static Stream<QuerySnapshot<Map<String, dynamic>>> getLastMessage(
-//       ChatUser user) {
-//     return firestore
+//   Stream<QuerySnapshot<Map<String, dynamic>>> getLastMessage(ChatUser user) {
+//     firestoreService.firestore
 //         .collection('chats/${getConversationID(user.id)}/messages/')
 //         .orderBy('sent', descending: true)
 //         .limit(1)
@@ -65,7 +69,7 @@
 //   }
 //
 //   //send chat image
-//   static Future<void> sendChatImage(ChatUser chatUser, File file) async {
+//    Future<void> sendChatImage(ChatUser chatUser, File file) async {
 //     //getting image file extension
 //     final ext = file.path.split('.').last;
 //
@@ -86,8 +90,8 @@
 //   }
 //
 //   //delete message
-//   static Future<void> deleteMessage(Message message) async {
-//     await firestore
+//    Future<void> deleteMessage(Message message) async {
+//     await firestoreService.firestore
 //         .collection('chats/${getConversationID(message.toId)}/messages/')
 //         .doc(message.sent)
 //         .delete();
@@ -98,8 +102,8 @@
 //   }
 //
 //   //update message
-//   static Future<void> updateMessage(Message message, String updatedMsg) async {
-//     await firestore
+//    Future<void> updateMessage(Message message, String updatedMsg) async {
+//     await firestoreService.firestore
 //         .collection('chats/${getConversationID(message.toId)}/messages/')
 //         .doc(message.sent)
 //         .update({'msg': updatedMsg});

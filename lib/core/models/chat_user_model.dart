@@ -49,13 +49,4 @@ class ChatUser {
     return data;
   }
 
-  void shaw(){
-    print(image);
-    print(name);
-    print(email);
-    print(id);
-    print(lastActive);
-    print(pushToken);
-    print(about);
-  }
 }
