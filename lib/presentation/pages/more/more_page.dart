@@ -24,7 +24,7 @@ class _MorePageState extends State<MorePage> {
       value: bloc,
       child: BlocBuilder<MoreBloc, MoreState>(
         builder: (context, state) {
-           return Scaffold(
+          return Scaffold(
             appBar: AppBar(title: const Text("More")),
           );
         },
